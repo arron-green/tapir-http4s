@@ -2,6 +2,7 @@ val Http4sVersion = "0.21.0-M6"
 val TapirVersion = "0.12.8"
 val CirceVersion = "0.12.2"
 val LogbackVersion = "1.2.3"
+val PureConfVersion = "0.12.1"
 
 lazy val root = (project in file("."))
   .settings(
@@ -17,6 +18,8 @@ lazy val root = (project in file("."))
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % TapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % TapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-sttp-client" % TapirVersion,
+      "com.github.pureconfig" %% "pureconfig" % PureConfVersion,
+      "com.github.pureconfig" %% "pureconfig-cats-effect" % PureConfVersion,
       "org.http4s" %% "http4s-circe" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "io.circe" %% "circe-generic" % CirceVersion,

@@ -4,6 +4,8 @@ import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 
 object models {
 
+  case class ServerConfig(port: Int)
+
   /**
     * Barebones rfc7807 https://tools.ietf.org/html/rfc7807
     * @param `type`
