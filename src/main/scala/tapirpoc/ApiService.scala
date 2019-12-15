@@ -60,7 +60,7 @@ class ApiService[F[_]](
     Kleisli[F, TimeZone, Either[Problem, Unit]] {
       case input: TimeZone =>
         for {
-          _ <- F.delay(s"set timezone for ${input}")
+          _ <- F.delay(println(s"set timezone for ${input}"))
         } yield ().asRight[Problem]
     }
 
