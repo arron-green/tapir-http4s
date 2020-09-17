@@ -16,7 +16,7 @@ object api {
   import models._
 
   object Error {
-    val body = tapir.jsonBody[Problem].description("Problem indication")
+    val body = jsonBody[Problem].description("Problem indication")
   }
 
   object Time {
@@ -24,12 +24,12 @@ object api {
 
     val get: Endpoint[Unit, Problem, Time, Nothing] = endpoint.get
       .errorOut(Error.body)
-      .out(tapir.jsonBody[Time].description("ISO time"))
+      .out(jsonBody[Time].description("ISO time"))
       .description("Retrieves the current time")
 
     val set: Endpoint[Time, Problem, Unit, Nothing] = endpoint.put
       .errorOut(Error.body)
-      .in(tapir.jsonBody[Time].description("ISO time"))
+      .in(jsonBody[Time].description("ISO time"))
       .description("Changes the current time")
 
     object Zone {
@@ -37,12 +37,12 @@ object api {
 
       val get: Endpoint[Unit, Problem, TimeZone, Nothing] = endpoint.get
         .errorOut(Error.body)
-        .out(tapir.jsonBody[TimeZone].description("Zone ID"))
+        .out(jsonBody[TimeZone].description("Zone ID"))
         .description("Retrieves the current time zone")
 
       val set: Endpoint[TimeZone, Problem, Unit, Nothing] = endpoint.put
         .errorOut(Error.body)
-        .in(tapir.jsonBody[TimeZone].description("Zone ID"))
+        .in(jsonBody[TimeZone].description("Zone ID"))
         .description("Changes the current time zone")
     }
   }

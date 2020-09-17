@@ -8,16 +8,17 @@ import org.http4s.syntax.kleisli._
 import sttp.tapir.server.http4s._
 import pureconfig.generic.auto._
 import pureconfig.module.catseffect._
+import scala.concurrent.ExecutionContext
 
 object Main extends IOApp {
   implicit val opts: Http4sServerOptions[IO] = Http4sServerOptions.default[IO]
 
   override def run(args: List[String]): IO[ExitCode] = {
     for {
-      conf <- loadConfigF[IO, models.ServerConfig]
+      conf <-  Blocker[IO].use(loadConfigF[IO, models.ServerConfig](_))
       api <- IO(new ApiService[IO])
       server <- IO {
-        BlazeServerBuilder[IO]
+        BlazeServerBuilder[IO](ExecutionContext.global)
           .bindHttp(port = conf.port, host = "0.0.0.0")
           .withHttpApp(
             Router(

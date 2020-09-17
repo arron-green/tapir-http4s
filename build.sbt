@@ -1,15 +1,14 @@
-val Http4sVersion = "0.21.0-M6"
-val TapirVersion = "0.12.8"
-val CirceVersion = "0.12.2"
+val Http4sVersion = "0.21.7"
+val TapirVersion = "0.16.16"
+val CirceVersion = "0.13.0"
 val LogbackVersion = "1.2.3"
-val PureConfVersion = "0.12.1"
-
+val PureConfVersion = "0.13.0"
 lazy val root = (project in file("."))
   .settings(
     organization := "org.self",
     name := "tapirpoc",
-    version := "0.0.1-SNAPSHOT",
-    scalaVersion := "2.12.10",
+    version := "0.0.2-SNAPSHOT",
+    scalaVersion := "2.12.12",
     libraryDependencies ++= Seq(
       "com.softwaremill.sttp.tapir" %% "tapir-core" % TapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % TapirVersion,
@@ -26,7 +25,7 @@ lazy val root = (project in file("."))
       "io.circe" %% "circe-literal" % CirceVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion
     ),
-    addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.3"),
+    addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full),
     addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
   )
 
